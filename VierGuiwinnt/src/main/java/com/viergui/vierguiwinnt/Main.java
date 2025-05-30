@@ -7,19 +7,26 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 
 public class Main extends Application {
+
+    private static Stage stage = null;
 
     public static void main(String[] args) {
         launch(args);
     }
 
+    public static void setScene(Scene scene){
+        Main.stage.setScene(scene);
+    }
+
     public void start(Stage stage) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
+        Main.stage = stage;
+
+        Parent root = FXMLLoader.load(getClass().getResource("splashScreen.fxml"));
         Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        Main.stage.setScene(scene);
+        Main.stage.show();
     }
 }
