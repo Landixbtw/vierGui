@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Objects;
 
 public class Main extends Application {
 
@@ -24,7 +26,14 @@ public class Main extends Application {
 
         Main.stage = stage;
 
-        Parent root = FXMLLoader.load(getClass().getResource("splashScreen.fxml"));
+        String fxmlPath = "splashScreen.fxml";
+        Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+        URL fxmlUrl = getClass().getResource(fxmlPath);
+
+        if (fxmlUrl == null) {
+            throw new RuntimeException("FXML file not found at " + fxmlPath);
+        }
+
         Scene scene = new Scene(root);
         Main.stage.setScene(scene);
         Main.stage.show();
