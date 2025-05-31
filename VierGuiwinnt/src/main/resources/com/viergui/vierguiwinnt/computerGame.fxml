@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viergui.vierguiwinnt.PlayerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viergui.vierguiwinnt.ComputerController">
    <bottom>
       <HBox BorderPane.alignment="CENTER">
          <children>
@@ -80,7 +80,7 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="playerLabel" text="X" textFill="#e40f0f">
+            <Label fx:id="playerXLabel" text="X" textFill="#e40f0f">
                <font>
                   <Font size="36.0" />
                </font>
@@ -91,7 +91,7 @@
    <right>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="computerLabel" text="O" textFill="#33ea1f">
+            <Label fx:id="computerOLabel" text="O" textFill="#33ea1f">
                <font>
                   <Font size="36.0" />
                </font>
