@@ -9,6 +9,10 @@ public class Board {
         initBoard();
     }
 
+    public int getColumn() {
+        return fields[0].length;
+    }
+
     //Spielfeld auf ' ' setzen
     private void initBoard(){
         for(int i = 0; i < fields.length; i++){

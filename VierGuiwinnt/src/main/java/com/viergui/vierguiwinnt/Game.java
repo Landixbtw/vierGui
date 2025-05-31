@@ -41,7 +41,7 @@ public class Game {
     private void game2(){
         Scanner scan = new Scanner(System.in);
         Board board = new Board();
-        Computer com = new Computer(7);
+        Computer com = new Computer(board.getColumn());
 
         System.out.println("Dein Stein ist X");
 
