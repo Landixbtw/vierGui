@@ -18,13 +18,14 @@
       <HBox BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="buttonReturn" mnemonicParsing="false" onAction="#handleReturnButton" text="Return" />
-            <Separator opacity="0.0" prefHeight="1.0" prefWidth="153.0" HBox.hgrow="NEVER" />
+            <Separator opacity="0.0" prefHeight="34.0" prefWidth="142.0" HBox.hgrow="NEVER" />
             <ComboBox fx:id="comboBox" onAction="#handleComboBox" prefWidth="150.0" promptText="Select Column" />
             <Button fx:id="setButton" mnemonicParsing="false" onAction="#handleSetButton" text="Set" />
-            <Separator opacity="0.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Separator opacity="0.0" prefHeight="2.0" prefWidth="79.0" HBox.hgrow="ALWAYS" />
+            <Button fx:id="newGame" mnemonicParsing="false" onAction="#handleNewButton" text="New Game" />
          </children>
          <padding>
-            <Insets bottom="20.0" />
+            <Insets bottom="20.0" left="10.0" right="10.0" />
          </padding>
       </HBox>
    </bottom>
@@ -55,7 +56,7 @@
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Player 1">
+            <Label text="Player A">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
@@ -63,7 +64,7 @@
             <Separator opacity="0.0" prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
             <Label fx:id="billboard" text="VS" />
             <Separator opacity="0.0" prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
-            <Label text="Player 2">
+            <Label text="Player B">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
@@ -74,7 +75,7 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="playerXlabel" text="X" textFill="#e40f0f">
+            <Label fx:id="playerBlabel" textFill="#e40f0f">
                <font>
                   <Font size="36.0" />
                </font>
@@ -85,7 +86,7 @@
    <right>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="playerOlabel" text="O" textFill="#33ea1f">
+            <Label fx:id="playerAlabel" textFill="#33ea1f">
                <font>
                   <Font size="36.0" />
                </font>
