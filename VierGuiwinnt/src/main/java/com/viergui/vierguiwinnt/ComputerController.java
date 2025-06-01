@@ -1,5 +1,7 @@
 package com.viergui.vierguiwinnt;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,12 +10,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
 
 import java.io.IOException;
-import java.net.URL;
 
 public class ComputerController {
 
+    public Button setButton;
     private boolean player;
     private boolean nextRound;
     private int input;
@@ -77,15 +80,14 @@ public class ComputerController {
     * This method handles the checking of the Location the Computer placement and win checking
     * */
     @FXML
-    public void handleSetButton() throws IOException {
+    public void handleSetButton() throws IOException, InterruptedException {
         // we need to automatically place after player places
         Computer computer = new Computer(board.getColumn());
-        if (!player) input = computer.set(); // this should provide column for computer to place
-        // directly put the computer place logic behind this, so it all happens in one move? => Loop for 2
-        // but then we need to land at player again so that its not player computer, computer
-        // need to modify game method? game2?
+        // if its computer turn we want to disable the button
+        // and kinda "skip" the turn so that user cant place double
+
         if(input != -1) {
-            if(!board.setValue(input, (player ? 'X' : 'O'))) {
+            if(!board.setValue(input,(player ? 'X' : 'O'))) {
                 billboard.setText("Full row");
                 return;
             }
@@ -93,20 +95,41 @@ public class ComputerController {
             billboard.setText("VS");
             gridBoard.add(new Label(player ? "X" : "O"), input, board.getHighestYCoord(input));
 
-            // checking for win player = player | !player = computer
             if(board.checkField(input, board.getHighestYCoord(input))) {
-                billboard.setText((player ? "Player Won!" : "Computer Won!"));
+                billboard.setText("Player Won!");
                 this.handleReturnButton();
+                return;
             }
 
             // here we go from player turn to computer turn
             player = !player;
-            if(player) {
-                playerLabel.setVisible(true);
-                computerLabel.setVisible(false);
-            } else {
+            // computer turn
+            if(!player) {
+                setButton.setDisable(true);
                 playerLabel.setVisible(false);
                 computerLabel.setVisible(true);
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.7), e -> {
+                    input = computer.set();
+
+                    if(!board.setValue(input,'O')) {
+                        billboard.setText("Full row");
+                        return;
+                    }
+                    billboard.setText("VS");
+                    gridBoard.add(new Label("O"), input, board.getHighestYCoord(input));
+
+                    // checking for win player = player | !player = computer
+                    if(board.checkField(input, board.getHighestYCoord(input))) {
+                        billboard.setText("Computer Won!");
+                    } else {
+                        // Set up next player turn
+                        player = true;
+                        playerLabel.setVisible(true);
+                        computerLabel.setVisible(false);
+                        setButton.setDisable(false);
+                    }
+                }));
+                timeline.play();
             }
         }
     }
