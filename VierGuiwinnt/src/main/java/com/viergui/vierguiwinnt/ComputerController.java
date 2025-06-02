@@ -3,12 +3,10 @@ package com.viergui.vierguiwinnt;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
@@ -41,6 +39,12 @@ public class ComputerController extends GameController{
     @FXML
     Label computerLabel;
 
+    @FXML
+    Label playerImgLabel;
+
+    @FXML
+    Label computerImgLabel;
+
     // NOTE: FXML needs a no arguments constructor otherwise it does not run
 //    public ComputerController() {
 //        // player = player | !player = computer
@@ -64,7 +68,19 @@ public class ComputerController extends GameController{
     @FXML
     public void initialize(){
         super.initialize();
-        computerLabel.setVisible(false);
+        playerImgLabel.setVisible(false);
+
+        ImageView ivy = new ImageView(getImageY());
+        ivy.setFitHeight(50);
+        ivy.setFitHeight(50);
+        ivy.setPreserveRatio(true);
+        playerImgLabel.setGraphic(ivy);
+
+        ImageView ivr = new ImageView(getImageR());
+        ivr.setFitHeight(50);
+        ivr.setFitHeight(50);
+        ivr.setPreserveRatio(true);
+        computerImgLabel.setGraphic(ivr);
     }
 
 //    @FXML
@@ -85,6 +101,16 @@ public class ComputerController extends GameController{
 //    }
 
 
+    private ImageView setImageLabel(boolean player) {
+        ImageView imgView = new ImageView(player ? getImageR() : getImageY());
+        imgView.setFitHeight(25);
+        imgView.setFitHeight(25);
+        imgView.setPreserveRatio(true);
+        GridPane.setHalignment(imgView, HPos.CENTER);
+        GridPane.setValignment(imgView, VPos.CENTER);
+        return imgView;
+    }
+
     /*
     * This method handles the checking of the Location the Computer placement and win checking
     * */
@@ -95,53 +121,68 @@ public class ComputerController extends GameController{
         // if its computer turn we want to disable the button
         // and kinda "skip" the turn so that user cant place double
 
-        if(input != -1) {
-            if (!board.isFull()) {
-                if (!board.setValue(input, (player ? 'X' : 'O'))) {
+        if(input != -1 && !board.isFull()) {
+            if (!board.setValue(input, (player ? 'X' : 'O'))) {
+                billboard.setText("Full row");
+                return;
+            }
+
+            ImageView imgView = setImageLabel(player);
+            gridBoard.add(imgView, input, board.getHighestYCoord(input));
+
+            if (board.checkField(input, board.getHighestYCoord(input))) {
+                billboard.setText("Player Won!");
+                System.out.println("Player Won!");
+                comboBox.setVisible(false);
+                setButton.setVisible(false);
+                return;
+            }
+
+            // here we go from player turn to computer turn
+            player = !player;
+            // computer turn
+            if (!player) {
+                setButton.setVisible(false);
+                playerImgLabel.setVisible(false);
+                computerLabel.setVisible(true);
+                computerImgLabel.setVisible(true);
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.7), e -> {
+                int computerInput = computer.set();
+
+                if (!board.setValue(computerInput, 'O')) {
                     billboard.setText("Full row");
                     return;
                 }
 
-                billboard.setText("VS");
-                gridBoard.add(new Label(player ? "X" : "O"), input, board.getHighestYCoord(input));
+                ImageView imgViewComputer = setImageLabel(player);
+                gridBoard.add(imgViewComputer, computerInput, board.getHighestYCoord(computerInput));
 
-                if (board.checkField(input, board.getHighestYCoord(input))) {
-                    billboard.setText("Player Won!");
-                    this.handleReturnButton();
+                // checking for win player = player | !player = computer
+                if (board.checkField(computerInput, board.getHighestYCoord(computerInput))) {
+                    billboard.setText("Computer Won!");
+                    System.out.println("Computer Won!");
+                    comboBox.setVisible(false);
+                    setButton.setVisible(false);
                     return;
+                } else {
+                    // Set up next player turn
+                    player = true;
+                    playerLabel.setVisible(true);
+                    playerImgLabel.setVisible(true);
+                    computerImgLabel.setVisible(false);
+                    setButton.setVisible(true);
                 }
-
-                // here we go from player turn to computer turn
-                player = !player;
-                // computer turn
-                if (!player) {
-                    setButton.setDisable(true);
-                    playerLabel.setVisible(false);
-                    computerLabel.setVisible(true);
-                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.7), e -> {
-                        input = computer.set();
-
-                        if (!board.setValue(input, 'O')) {
-                            billboard.setText("Full row");
-                            return;
-                        }
-                        billboard.setText("VS");
-                        gridBoard.add(new Label("O"), input, board.getHighestYCoord(input));
-
-                        // checking for win player = player | !player = computer
-                        if (board.checkField(input, board.getHighestYCoord(input))) {
-                            billboard.setText("Computer Won!");
-                        } else {
-                            // Set up next player turn
-                            player = true;
-                            playerLabel.setVisible(true);
-                            computerLabel.setVisible(false);
-                            setButton.setDisable(false);
-                        }
-                    }));
-                    timeline.play();
-                }
+                }));
+                timeline.play();
             }
         }
+    }
+
+
+    @FXML
+    public void handleNewButton(){
+        super.handleNewButton();
+        playerLabel.setVisible(false);
+        computerLabel.setVisible(true);
     }
 }
