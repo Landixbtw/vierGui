@@ -21,63 +21,30 @@ import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-public class PlayerController {
-
-    private boolean player;
-    private int input;
-    private Board board;
-    private Image imageY;
-    private Image imageR;
-
-    @FXML
-    Button buttonReturn;
-
-    @FXML
-    ComboBox<Integer> comboBox;
-
-    @FXML
-    GridPane gridBoard;
-
-    @FXML
-    Label billboard;
-
-    @FXML
-    Label playerBlabel;
+public class PlayerController extends GameController{
 
     @FXML
     Label playerAlabel;
 
     @FXML
-    Button setButton;
-
-    @FXML
-    Button newGame;
+    Label playerBlabel;
 
     public PlayerController(){
-        init();
+        super();
     }
 
     @FXML
     public void initialize(){
-        comboBox.getItems().addAll(1, 2, 3, 4, 5, 6, 7);
+        super.initialize();
         playerAlabel.setVisible(false);
-        gridBoard.setGridLinesVisible(true);
 
-        imageY = new Image(getClass()
-                .getResource("yellowCircle.png")
-                .toExternalForm());
-
-        imageR = new Image(getClass()
-                .getResource("redCircle.png")
-                .toExternalForm());
-
-        ImageView ivy = new ImageView(imageY);
+        ImageView ivy = new ImageView(getImageY());
         ivy.setFitHeight(50);
         ivy.setFitHeight(50);
         ivy.setPreserveRatio(true);
         playerAlabel.setGraphic(ivy);
 
-        ImageView ivr = new ImageView(imageR);
+        ImageView ivr = new ImageView(getImageR());
         ivr.setFitHeight(50);
         ivr.setFitHeight(50);
         ivr.setPreserveRatio(true);
@@ -85,68 +52,50 @@ public class PlayerController {
     }
 
     @FXML
-    public void handleReturnButton() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("splashScreen.fxml"));
-        Scene scene = new Scene(root);
-        Main.setScene(scene);
-    }
-
-    @FXML
-    public void handleComboBox(){
-        if(comboBox.getValue() != null)
-            input = comboBox.getValue() - 1;
-    }
-
-     @FXML
-    public void handleSetButton() throws IOException{
+    public void handleSetButton() {
         if(input != -1){
-            if (!board.setValue(input, (player? 'X' : 'O'))) {
-                billboard.setText("Full row.");
-                return;
-            }
+            if(!board.isFull()) {
+                if (!board.setValue(input, (player ? 'X' : 'O'))) {
+                    billboard.setText("Full row.");
+                    return;
+                }
 
-            ImageView imgView = new ImageView(player? imageR : imageY);
-            imgView.setFitHeight(25);
-            imgView.setFitHeight(25);
-            imgView.setPreserveRatio(true);
-            gridBoard.add(imgView, input, board.getHighestYCoord(input));
-            GridPane.setHalignment(imgView, HPos.CENTER);
-            GridPane.setValignment(imgView, VPos.CENTER);
+                ImageView imgView = new ImageView(player ? getImageR() : getImageY());
+                imgView.setFitHeight(25);
+                imgView.setFitHeight(25);
+                imgView.setPreserveRatio(true);
+                gridBoard.add(imgView, input, board.getHighestYCoord(input));
+                GridPane.setHalignment(imgView, HPos.CENTER);
+                GridPane.setValignment(imgView, VPos.CENTER);
 
-            //Prüfen, ob gewonnen wurde
-            if(board.checkField(input, board.getHighestYCoord(input))){
-                billboard.setText("Player "+ (player? "A" : "B") + " won!");
-                comboBox.setVisible(false);
-                setButton.setVisible(false);
-            }
+                //Prüfen, ob gewonnen wurde
+                if (board.checkField(input, board.getHighestYCoord(input))) {
+                    billboard.setText("Player " + (player ? "A" : "B") + " won!");
+                    comboBox.setVisible(false);
+                    setButton.setVisible(false);
+                }
 
-            player = !player;
-            if(player) {
-                playerBlabel.setVisible(true);
-                playerAlabel.setVisible(false);
+                player = !player;
+                if (player) {
+                    playerBlabel.setVisible(true);
+                    playerAlabel.setVisible(false);
+                } else {
+                    playerBlabel.setVisible(false);
+                    playerAlabel.setVisible(true);
+                }
             }
             else{
-                playerBlabel.setVisible(false);
-                playerAlabel.setVisible(true);
+                billboard.setText("Board Full");
+                comboBox.setVisible(false);
+                setButton.setVisible(false);
             }
         }
     }
 
     @FXML
     public void handleNewButton(){
-        billboard.setText("VS");
-        comboBox.setVisible(true);
-        comboBox.setValue(null);
-        setButton.setVisible(true);
+        super.handleNewButton();
         playerAlabel.setVisible(false);
         playerBlabel.setVisible(true);
-        gridBoard.getChildren().removeIf(node -> node instanceof ImageView);
-        init();
-    }
-
-    private void init(){
-        player = true;
-        input = -1;
-        board = new Board();
     }
 }
