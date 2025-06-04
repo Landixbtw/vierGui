@@ -1,40 +1,32 @@
 package com.viergui.vierguiwinnt;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.util.Duration;
 
-import java.io.IOException;
-import java.sql.Time;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+/**
+ * This is the controller class of the player vs. player game mode
+ * @author Ole Wortmann,
+ * @author Yannik Schuldes, 6008313
+ */
 
 public class PlayerController extends GameController{
 
-    @FXML
-    Label playerAlabel;
+    private boolean player;
 
     @FXML
-    Label playerBlabel;
+    private Label playerAlabel;
+
+    @FXML
+    private Label playerBlabel;
 
     public PlayerController(){
         super();
+        player = true;
     }
 
     @FXML
-    public void initialize(){
+    protected void initialize(){
         super.initialize();
         playerAlabel.setVisible(false);
 
@@ -52,7 +44,7 @@ public class PlayerController extends GameController{
     }
 
     @FXML
-    public void handleSetButton() {
+    protected void handleSetButton() {
         if(input != -1){
             if(!board.isFull()) {
                 if (!board.setValue(input, (player ? 'X' : 'O'))) {
@@ -65,9 +57,13 @@ public class PlayerController extends GameController{
 
                 //Prüfen, ob gewonnen wurde
                 if (board.checkField(input, board.getHighestYCoord(input))) {
-                    billboard.setText("Player " + (player ? "A" : "B") + " won!");
+
+                    String txt = "Player " + (player ? "A" : "B") + " won!";
+
+                    billboard.setText(txt);
                     comboBox.setVisible(false);
                     setButton.setVisible(false);
+                    return;
                 }
 
                 player = !player;
@@ -88,9 +84,10 @@ public class PlayerController extends GameController{
     }
 
     @FXML
-    public void handleNewButton(){
+    protected void handleNewButton(){
         super.handleNewButton();
         playerAlabel.setVisible(false);
         playerBlabel.setVisible(true);
+        player = true;
     }
 }

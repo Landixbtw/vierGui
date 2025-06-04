@@ -12,41 +12,45 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-
 import java.io.IOException;
+
+/**
+ * This is the super class of ComputerController and PlayerController
+ * @author Ole Wortmann,
+ * @author Yannik Schuldes, 6008313
+ */
 
 public abstract class GameController {
 
-    protected boolean player;
     protected Board board;
     protected int input;
     private Image imageY;
     private Image imageR;
 
     @FXML
-    Button buttonReturn;
+    private Button buttonReturn;
 
     @FXML
-    ComboBox<Integer> comboBox;
+    protected ComboBox<Integer> comboBox;
 
     @FXML
-    GridPane gridBoard;
+    protected GridPane gridBoard;
 
     @FXML
-    Label billboard;
+    protected Label billboard;
 
     @FXML
-    Button setButton;
+    protected Button setButton;
 
     @FXML
-    Button newGame;
+    private Button newGame;
 
     public GameController() {
         init();
     }
 
     @FXML
-    public void initialize() {
+    protected void initialize() {
         comboBox.getItems().addAll(1, 2, 3, 4, 5, 6, 7);
         gridBoard.setGridLinesVisible(true);
 
@@ -60,23 +64,23 @@ public abstract class GameController {
     }
 
     @FXML
-    public void handleReturnButton() throws IOException {
+    private void handleReturnButton() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("splashScreen.fxml"));
         Scene scene = new Scene(root);
         Main.setScene(scene);
     }
 
     @FXML
-    public void handleComboBox() {
+    private void handleComboBox() {
         if (comboBox.getValue() != null)
             input = comboBox.getValue() - 1;
     }
 
     @FXML
-    public abstract void handleSetButton() throws IOException;
+    protected abstract void handleSetButton() throws IOException;
 
     @FXML
-    public void handleNewButton() {
+    protected void handleNewButton() {
         billboard.setText("VS");
         comboBox.setVisible(true);
         comboBox.setValue(null);
@@ -96,7 +100,6 @@ public abstract class GameController {
     }
 
     private void init() {
-        player = true;
         input = -1;
         board = new Board();
     }

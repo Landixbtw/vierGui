@@ -72,18 +72,18 @@
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="playerLabel" text="Player">
+            <Label fx:id="playerLabel" minWidth="-Infinity" prefWidth="100.0" text="Player" HBox.hgrow="ALWAYS">
                <HBox.margin><Insets left="20.0" /></HBox.margin>
             </Label>
 
             <!-- invisible, stretchy separator -->
             <Separator opacity="0.0" prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
 
-            <Label fx:id="billboard" text="VS" />
+            <Label fx:id="billboard" alignment="CENTER" minWidth="-Infinity" prefWidth="100.0" text="VS" HBox.hgrow="ALWAYS" />
 
             <Separator opacity="0.0" prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
 
-            <Label fx:id="computerLabel" text="Computer">
+            <Label fx:id="computerLabel" alignment="CENTER_RIGHT" minWidth="-Infinity" prefWidth="100.0" text="Computer" HBox.hgrow="ALWAYS">
                <HBox.margin><Insets right="20.0" /></HBox.margin>
             </Label>
          </children>

@@ -1,5 +1,11 @@
 package com.viergui.vierguiwinnt;
 
+/**
+ * This is the model class. It contains the game logic.
+ * @author Ole Wortmann,
+ * @author Yannik Schuldes, 6008313
+ */
+
 public class Board {
 
     private char[][] fields;
@@ -21,17 +27,6 @@ public class Board {
             }
         }
 
-    }
-
-    //Spielfeld ausgeben
-    public void printBoard(){
-        for(int i = 0; i < fields.length; i++){
-            System.out.print("| ");
-            for(int c = 0; c < fields[i].length; c++){
-                System.out.print(fields[i][c] + " | ");
-            }
-            System.out.println();
-        }
     }
 
     //Den Stein an die tiefstmögliche Stelle setzen

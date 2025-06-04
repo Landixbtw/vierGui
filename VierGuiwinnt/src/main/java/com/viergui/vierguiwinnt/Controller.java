@@ -5,8 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
 import java.io.IOException;
+
+/**
+ * This is the controller class of the main screen
+ * @author Ole Wortmann,
+ * @author Yannik Schuldes, 6008313
+ */
 
 public class Controller {
 

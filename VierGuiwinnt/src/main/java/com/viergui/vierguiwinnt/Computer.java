@@ -2,6 +2,12 @@ package com.viergui.vierguiwinnt;
 
 import java.util.Random;
 
+/**
+ * This class controls the computer. Here, the computer could be improved.
+ * @author Ole Wortmann,
+ * @author Yannik Schuldes, 6008313
+ */
+
 public class Computer {
 
     private final int maxColumns;

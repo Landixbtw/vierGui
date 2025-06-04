@@ -10,6 +10,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 
+/**
+ * This class starts the GUI with the start screen
+ * @author Ole Wortmann,
+ * @author Yannik Schuldes, 6008313
+ */
+
 public class Main extends Application {
 
     private static Stage stage = null;

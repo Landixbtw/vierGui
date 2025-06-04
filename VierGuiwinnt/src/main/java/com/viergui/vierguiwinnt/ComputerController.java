@@ -3,30 +3,32 @@ package com.viergui.vierguiwinnt;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
-
 import java.io.IOException;
+
+/**
+ * This is the controller class of the player vs. computer game mode
+ * @author Ole Wortmann,
+ * @author Yannik Schuldes, 6008313
+ */
 
 public class ComputerController extends GameController{
 
     private Computer computer;
 
     @FXML
-    Label playerLabel;
+    private Label playerLabel;
 
     @FXML
-    Label computerLabel;
+    private Label computerLabel;
 
     @FXML
-    Label playerImgLabel;
+    private Label playerImgLabel;
 
     @FXML
-    Label computerImgLabel;
+    private Label computerImgLabel;
 
     public ComputerController(){
         super();
@@ -35,7 +37,7 @@ public class ComputerController extends GameController{
 
 
     @FXML
-    public void initialize(){
+    protected void initialize(){
         super.initialize();
         computerImgLabel.setVisible(false);
 
@@ -56,14 +58,14 @@ public class ComputerController extends GameController{
     * This method handles the checking of the Location the Computer placement and win checking
     * */
     @FXML
-    public void handleSetButton() throws IOException {
+    protected void handleSetButton() throws IOException {
         // we need to automatically place after player places
         // if its computer turn we want to disable the button
         // and kinda "skip" the turn so that user cant place double
 
         if(input != -1) {
             if(!board.isFull()){
-                if (!board.setValue(input, (player ? 'X' : 'O'))) {
+                if (!board.setValue(input, ('X'))) {
                     billboard.setText("Full column");
                     return;
                 }
@@ -72,7 +74,7 @@ public class ComputerController extends GameController{
                 gridBoard.add(imgView, input, board.getHighestYCoord(input));
 
                 if (board.checkField(input, board.getHighestYCoord(input))) {
-                    billboard.setText("Player Won!");
+                    billboard.setText("Player won!");
                     comboBox.setVisible(false);
                     setButton.setVisible(false);
                     return;
@@ -95,7 +97,7 @@ public class ComputerController extends GameController{
                     ImageView imgViewComputer = setImageLabel(false);
                     gridBoard.add(imgViewComputer, computerInput, board.getHighestYCoord(computerInput));
 
-                    // checking for win player = player | !player = computer
+                    // checking for win
                     if (board.checkField(computerInput, board.getHighestYCoord(computerInput))) {
                         billboard.setText("Computer Won!");
                         comboBox.setVisible(false);
@@ -121,7 +123,7 @@ public class ComputerController extends GameController{
 
 
     @FXML
-    public void handleNewButton(){
+    protected void handleNewButton(){
         super.handleNewButton();
         playerImgLabel.setVisible(true);
         computerImgLabel.setVisible(false);
