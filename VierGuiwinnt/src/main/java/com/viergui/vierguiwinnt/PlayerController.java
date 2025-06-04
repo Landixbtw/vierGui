@@ -56,17 +56,12 @@ public class PlayerController extends GameController{
         if(input != -1){
             if(!board.isFull()) {
                 if (!board.setValue(input, (player ? 'X' : 'O'))) {
-                    billboard.setText("Full row.");
+                    billboard.setText("Full column.");
                     return;
                 }
 
-                ImageView imgView = new ImageView(player ? getImageR() : getImageY());
-                imgView.setFitHeight(25);
-                imgView.setFitHeight(25);
-                imgView.setPreserveRatio(true);
+                ImageView imgView = setImageLabel(player);
                 gridBoard.add(imgView, input, board.getHighestYCoord(input));
-                GridPane.setHalignment(imgView, HPos.CENTER);
-                GridPane.setValignment(imgView, VPos.CENTER);
 
                 //Prüfen, ob gewonnen wurde
                 if (board.checkField(input, board.getHighestYCoord(input))) {

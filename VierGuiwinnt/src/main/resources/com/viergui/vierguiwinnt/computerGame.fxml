@@ -13,44 +13,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/24"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.viergui.vierguiwinnt.ComputerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viergui.vierguiwinnt.ComputerController">
 
    <!-- ────────────  BOTTOM  ──────────── -->
    <bottom>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="buttonReturn"
-                    mnemonicParsing="false"
-                    onAction="#handleReturnButton"
-                    text="Return" />
+            <Button fx:id="buttonReturn" mnemonicParsing="false" onAction="#handleReturnButton" text="Return" />
 
             <!-- fixed-size spacer (matches playerGame.fxml) -->
-            <Separator opacity="0.0" prefHeight="34.0" prefWidth="142.0" HBox.hgrow="NEVER"/>
+            <Separator opacity="0.0" prefHeight="34.0" prefWidth="142.0" HBox.hgrow="NEVER" />
 
-            <ComboBox fx:id="comboBox"
-                      onAction="#handleComboBox"
-                      promptText="Select Column" />
+            <ComboBox fx:id="comboBox" onAction="#handleComboBox" promptText="Select Column" />
 
-            <Button fx:id="setButton"
-                    mnemonicParsing="false"
-                    onAction="#handleSetButton"
-                    text="Set" />
+            <Button fx:id="setButton" mnemonicParsing="false" onAction="#handleSetButton" text="Set" />
 
             <!-- stretchy spacer -->
-            <Separator opacity="0.0" prefHeight="2.0" prefWidth="79.0" HBox.hgrow="ALWAYS"/>
+            <Separator opacity="0.0" prefHeight="2.0" prefWidth="79.0" HBox.hgrow="ALWAYS" />
 
-            <Button fx:id="newGameButton"
-                    mnemonicParsing="false"
-                    onAction="#handleNewButton"
-                    text="New Game" />
+            <Button fx:id="newGameButton" mnemonicParsing="false" onAction="#handleNewButton" text="New Game" />
          </children>
 
          <padding>
-            <Insets bottom="20.0" left="10.0" right="10.0"/>
+            <Insets bottom="20.0" left="10.0" right="10.0" />
          </padding>
       </HBox>
    </bottom>
@@ -59,26 +44,26 @@
    <center>
       <GridPane fx:id="gridBoard" gridLinesVisible="true" BorderPane.alignment="CENTER">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
 
          <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
 
          <BorderPane.margin>
-            <Insets top="50.0" right="100.0" bottom="50.0" left="100.0"/>
+            <Insets bottom="50.0" left="100.0" right="100.0" top="50.0" />
          </BorderPane.margin>
       </GridPane>
    </center>
@@ -88,18 +73,18 @@
       <HBox alignment="CENTER" prefHeight="100.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="playerLabel" text="Player">
-               <HBox.margin><Insets left="20.0"/></HBox.margin>
+               <HBox.margin><Insets left="20.0" /></HBox.margin>
             </Label>
 
             <!-- invisible, stretchy separator -->
-            <Separator opacity="0.0" prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS"/>
+            <Separator opacity="0.0" prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
 
-            <Label fx:id="billboard" text="VS"/>
+            <Label fx:id="billboard" text="VS" />
 
-            <Separator opacity="0.0" prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS"/>
+            <Separator opacity="0.0" prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
 
             <Label fx:id="computerLabel" text="Computer">
-               <HBox.margin><Insets right="20.0"/></HBox.margin>
+               <HBox.margin><Insets right="20.0" /></HBox.margin>
             </Label>
          </children>
       </HBox>
@@ -107,8 +92,8 @@
    <left>
       <VBox alignment="TOP_CENTER" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="computerImgLabel" textFill="#e40f0f">
-               <font><Font size="36.0"/></font>
+            <Label fx:id="playerImgLabel" textFill="#e40f0f">
+               <font><Font size="36.0" /></font>
             </Label>
          </children>
       </VBox>
@@ -117,12 +102,11 @@
    <right>
       <VBox alignment="TOP_CENTER" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="playerImgLabel" textFill="#33ea1f">
-               <font><Font size="36.0"/></font>
+            <Label fx:id="computerImgLabel" textFill="#33ea1f">
+               <font><Font size="36.0" /></font>
             </Label>
          </children>
       </VBox>
    </right>
 
 </BorderPane>
-

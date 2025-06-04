@@ -85,6 +85,16 @@ public abstract class GameController {
         init();
     }
 
+    protected ImageView setImageLabel(boolean player) {
+        ImageView imgView = new ImageView(player ? getImageR() : getImageY());
+        imgView.setFitHeight(25);
+        imgView.setFitHeight(25);
+        imgView.setPreserveRatio(true);
+        GridPane.setHalignment(imgView, HPos.CENTER);
+        GridPane.setValignment(imgView, VPos.CENTER);
+        return imgView;
+    }
+
     private void init() {
         player = true;
         input = -1;
