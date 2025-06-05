@@ -16,7 +16,7 @@ import java.io.IOException;
 
 /**
  * This is the super class of ComputerController and PlayerController
- * @author Ole Wortmann,
+ * @author Ole Wortmann, 6007350
  * @author Yannik Schuldes, 6008313
  */
 
