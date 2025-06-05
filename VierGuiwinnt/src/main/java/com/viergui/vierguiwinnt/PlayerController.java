@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 
 /**
  * This is the controller class of the player vs. player game mode
- * @author Ole Wortmann,
+ * @author Ole Wortmann, 6007350
  * @author Yannik Schuldes, 6008313
  */
 
