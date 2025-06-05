@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /**
  * This is the controller class of the main screen
- * @author Ole Wortmann,
+ * @author Ole Wortmann, 6007350
  * @author Yannik Schuldes, 6008313
  */
 
