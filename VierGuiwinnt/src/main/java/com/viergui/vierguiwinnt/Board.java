@@ -2,7 +2,7 @@ package com.viergui.vierguiwinnt;
 
 /**
  * This is the model class. It contains the game logic.
- * @author Ole Wortmann,
+ * @author Ole Wortmann, 6007350
  * @author Yannik Schuldes, 6008313
  */
 
