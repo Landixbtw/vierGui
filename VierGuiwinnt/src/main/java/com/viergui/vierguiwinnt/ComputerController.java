@@ -10,7 +10,7 @@ import java.io.IOException;
 
 /**
  * This is the controller class of the player vs. computer game mode
- * @author Ole Wortmann,
+ * @author Ole Wortmann, 6007350
  * @author Yannik Schuldes, 6008313
  */
 
