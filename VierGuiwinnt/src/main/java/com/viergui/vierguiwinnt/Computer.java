@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * This class controls the computer. Here, the computer could be improved.
- * @author Ole Wortmann,
+ * @author Ole Wortmann, 6007350
  * @author Yannik Schuldes, 6008313
  */
 

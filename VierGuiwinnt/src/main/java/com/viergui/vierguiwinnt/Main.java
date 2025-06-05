@@ -12,7 +12,7 @@ import java.util.Objects;
 
 /**
  * This class starts the GUI with the start screen
- * @author Ole Wortmann,
+ * @author Ole Wortmann, 6007350
  * @author Yannik Schuldes, 6008313
  */
 
